@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Claim Summary</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet" id="fontawesome-css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="../CSS3/ClaimSummary.css" rel="stylesheet" type="text/css">
+<link href="../CSS3/About.css" rel="stylesheet" type="text/css">
+<script>
+    var userName = sessionStorage.userName;
+    window.addEventListener("load", function(){
+      document.getElementById('welcome').innerHTML="Welcome " + userName;
+      document.getElementById('time').innerHTML="Last Login : " + sessionStorage.loginTime;
+  });
+</script>
+<style>
+  html,body{
+    height: 100%;
+  }
+    .box{
+      height: 83%;
+      margin-left: auto;
+      margin-right: auto;
+      width: 80%;
+      border: 2px solid black;
+      padding: 2em;
+      border-top-width: 0;
+    }
+    h3{
+      border: 2px solid black;
+      width: max-content;
+      /* background: url(https://www.w3schools.com/css/paper.gif); */
+      background-color: rgb(164, 197, 218);
+      margin-bottom: 0;
+      border-bottom-style: none;
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+    }
+    p{
+      border: 1px solid black;
+      /* background: url(https://www.w3schools.com/css/paper.gif); */
+      background-color: rgb(164, 197, 218);
+      border-top-right-radius: 0.5em;
+      height: 100px;
+      padding: 20px;
+      font-weight: 500;
+    }
+    #story{
+      height: 400px;
+    }
+</style>
+</head>
+<body>
+  <header>
+    <div>
+    <span id="header"> About Us</span>
+    <div id="userDetails">
+      <span id="welcome" class="right left-align"></span> </br>
+      <span id="time" class="right left-align"></span>
+  </div>
+  </div>
+  </header>
+  <div id="menu">
+    <ul>
+    <li><a href="ClaimSummary.html">Claim Summary</a></li> 
+    <li><a href="ContactUs.html">Contact Us</a></li>
+    <li><a href="Login.html" class="right">Logout</a></li>
+  </ul>
+  </div>
+  <div class="box">
+      <h3>Vision</h3>
+      <p>To become the number 1 service & consultancy firm for Digitalizing Businesses</p>
+      <h3>Mission</h3>
+      <p>Help clients digitalize their businesses</p>
+      <h3>Our Story</h3>
+      <p id="story">We established our first service on August 6, 2020. </br>
+         This is our first application created for Claims Management. </br>
+         This application helps to manage your claims with MongoDB database. </br>
+         We are helping many clients to digitalise their business. </br>
+         Reach out to us if you have any digitilazation needs. </br>
+         Please check the Contact Us page to reach us.</p>
+  </div>
+
+  <!-- <div id="cards">
+    <div class="deck">
+      <div class="card-space">
+        <div class="card">
+          <div class="face front">
+            <h1>Mission Statement</h1>
+          </div>
+          <div class="face back">
+            <p>Help clients digitalize their businesses.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-space">
+        <div class="card">
+          <div class="face front">
+            <h1>Vision Statement</h1>
+          </div>
+          <div class="face back">
+            <p>To become the number 1 service & consultancy firm for Digitalizing Businesses.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-space">
+        <div class="card">
+          <div class="face front">
+            <h1>Our Story</h1>
+          </div>
+          <div class="face back">
+            <p>We established our first service on August 6, 2020. This is our first application created for Claims Management. This application helps to manage your claims with MongoDB database. 
+              We are helping many clients to digitalise their business. Reach out to us if you have any digitilazation needs. Please check the Contact Us page to reach us.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <footer>
+    &copy;2020 Mani
+  </footer>
+</body>
+</html>

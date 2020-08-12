@@ -1,0 +1,75 @@
+body{
+    padding-top:4.2rem;
+    padding-bottom:4.2rem;
+    background:lightblue;
+    /* background: url(https://www.w3schools.com/css/paper.gif); */
+    }
+    a{
+     text-decoration:none !important;
+     }
+    
+      .myform{
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 1rem;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 1.1rem;
+    outline: 0;
+    max-width: 500px;
+     }
+     .tx-tfm{
+     text-transform:uppercase;
+     }
+     .mybtn{
+     border-radius:50px;
+     }
+    
+     /* input:invalid {
+        border: 2px dashed red;
+      } */
+      
+     .row{
+         padding-top: 12em;
+     }
+
+     /* The message box is shown when the user clicks on the password field */
+#message {
+    display:none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+  }
+  
+  #message p {
+    padding: 10px 35px;
+    font-size: 18px;
+  }
+  
+  /* Add a green text color and a checkmark when the requirements are right */
+  .valid {
+    display: none;
+  }
+  
+  
+  /* Add a red text color and an "x" when the requirements are wrong */
+  .invalid {
+    display: block;
+    color: red;
+  }
+  
+  .invalid:before {
+    position: relative;
+    left: -35px;
+    content: ".";
+    padding: 20px;
+    margin-top: 20px;
+  }

@@ -1,0 +1,181 @@
+body{
+    background:lightblue;
+    /* background: url(https://www.w3schools.com/css/paper.gif); */
+    margin: 0;
+    }
+
+header{
+    height: 70px;
+    text-align: center;
+    padding-top: 1em;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: larger;
+    background-color: black;
+    color: white;
+    display: grid;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    background-color: #111;
+    text-decoration: none;
+    color: white;
+  }
+  
+  footer{
+      text-align: center;
+      background-color: black;
+      color: white;
+      height: 50px;
+      padding: 1em;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+  }
+  
+  table{
+      margin-top: 3em;
+      width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+      border-collapse: collapse;
+  }
+
+  th{
+    border: 1px solid black;
+    text-align: center;
+}
+
+  td{
+      border: 1px solid black;
+      text-align: center;
+  }
+
+  .edit{
+      color: black;
+      text-transform: lowercase;
+      text-decoration: none;
+  }
+
+  .edit:hover{
+      text-decoration: none;
+      color: white;
+      background-color: black;
+      cursor: pointer;
+  }
+  
+  td i{
+      padding-right: 5px;
+  }
+
+  tr:nth-child(even) {
+    background-color: rgb(164, 197, 218);
+    /* background-color: tan; */
+  }
+
+  #updateForm{
+      margin-top: 4em;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+  }
+
+  #formUpdate{
+    margin-top: 4em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+  form{
+      border: 1px solid black;
+      border-radius: 1.1rem;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  #divUpdate{
+      margin: 10px;
+  }
+
+  label{
+      position: absolute;
+  }
+
+  input{
+      width: 60% !important;
+      margin-left: 10em;
+      margin-bottom: 0.5rem;
+      padding: 0 !important;
+  }
+
+  select{
+    width: 60% !important;
+    margin-left: 10em;
+    margin-bottom: 0.5rem;
+    padding: 0 !important;
+}
+
+  .hide{
+      display: none;
+  }
+
+  .save{
+      /* background-color: green; */
+      background-color: #007bff;
+      font-weight: bolder;
+  }
+
+  .cancel{
+      /* background-color: red; */
+      background-color: #007bff;
+      font-weight: bolder;
+  }
+
+  .error{
+      border: 2px solid red;
+  }
+
+  .right{
+      position: absolute;
+      right: 5em;
+      word-spacing: 5px;
+  }
+
+  .left-align{
+      width: 300px;
+      text-align: left;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .columns {
+      width: 100%;
+    }
+  }
+
+  #userDetails{
+      display: inline;
+      font-size: smaller;
+      font-weight: normal;
+      text-transform: none;
+  }

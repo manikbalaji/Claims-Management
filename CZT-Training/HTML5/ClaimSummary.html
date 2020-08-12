@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Claim Summary</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet" id="fontawesome-css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="../CSS3/ClaimSummary.css" rel="stylesheet" type="text/css">
+<script>
+  var userName = sessionStorage.userName;
+  window.addEventListener("load", function(){
+    document.getElementById('welcome').innerHTML="Welcome " + userName;
+    document.getElementById('time').innerHTML="Last Login : " + sessionStorage.loginTime;
+});
+
+var tableRowIndex = 1;
+
+let lstclaims = [
+  { ['Employee Id']: "1", ['Employee Name']: "Test1", ['Claim Number']: "1", ['Claim Type']: "Paid", ['Claim Program']: "Life Insurance", ['Start Date']: "08/12/2020", ['End Date']: "12/12/2020" },
+  { ['Employee Id']: "2", ['Employee Name']: "Test2", ['Claim Number']: "2", ['Claim Type']: "Submitted", ['Claim Program']: "Life Insurance", ['Start Date']: "08/12/2020", ['End Date']: "12/12/2020" },
+  { ['Employee Id']: "3", ['Employee Name']: "Test3", ['Claim Number']: "3", ['Claim Type']: "Pending", ['Claim Program']: "Vehicle Insurance", ['Start Date']: "08/12/2020", ['End Date']: "12/12/2020" },
+  { ['Employee Id']: "4", ['Employee Name']: "Test4", ['Claim Number']: "4", ['Claim Type']: "Rejected", ['Claim Program']: "Vehicle Insurance", ['Start Date']: "08/12/2020", ['End Date']: "12/12/2020" },
+  { ['Employee Id']: "5", ['Employee Name']: "Test5", ['Claim Number']: "5", ['Claim Type']: "More Info Required", ['Claim Program']: "Life Insurance", ['Start Date']: "08/12/2020", ['End Date']: "12/12/2020" }
+];
+
+document.addEventListener("DOMContentLoaded",loadTable);
+
+function generateTableHead(table, data) {
+  let thead = table.createTHead();
+  let row = thead.insertRow();
+  for (let key of data) {
+    let th = document.createElement("th");
+    let text = document.createTextNode(key);
+    th.appendChild(text);
+    row.appendChild(th);
+  }
+  let th = document.createElement("th");
+  th.appendChild(document.createTextNode('Edit'));
+  row.appendChild(th);
+}
+
+function generateTable(table, data) {
+  let i = 0;
+  for (let element of data) {
+    let row = table.insertRow();
+    for (key in element) {
+      let cell = row.insertCell();
+      let text = document.createTextNode(element[key]);
+      cell.appendChild(text);
+    }
+    let text = document.createElement('td');
+    text.setAttribute('class',"edit");
+    text.setAttribute('onclick',"editRow(this)");
+    text.innerHTML = '<i class="fas fa-edit"></i>Update';
+    document.getElementsByTagName('tr')[i].appendChild(text);
+    i++;
+  }
+}
+
+function loadTable() {
+  let table = document.querySelector("table");
+  let data = Object.keys(lstclaims[0]);
+  
+  generateTable(table, lstclaims);
+  generateTableHead(table, data);
+}
+
+function editRow(e){
+  formUpdate.classList.remove("hide");
+  var table = document.getElementById('tblClaimSummary');
+  var rowId = e.parentNode.rowIndex;
+  tableRowIndex = rowId;
+  var rowSelected = table.getElementsByTagName('tr')[rowId];
+  document.frmupdate.empId.value = rowSelected.cells[0].innerText;
+  document.frmupdate.empName.value = rowSelected.cells[1].innerText;
+  document.frmupdate.clmNum.value = rowSelected.cells[2].innerText;
+  document.frmupdate.clmType.value = rowSelected.cells[3].innerText;
+  document.frmupdate.clmPrgm.value = rowSelected.cells[4].innerText;
+  document.frmupdate.startDt.value = rowSelected.cells[5].innerText.split("/").reverse().join("-");
+  document.frmupdate.endDt.value = rowSelected.cells[6].innerText.split("/").reverse().join("-");
+}
+
+function editRowFromLink(){
+  formUpdate.classList.remove("hide");
+  var table = document.getElementById('tblClaimSummary');
+  var rowSelected = table.getElementsByTagName('tr')[1];
+  document.frmupdate.empId.value = rowSelected.cells[0].innerText;
+  document.frmupdate.empName.value = rowSelected.cells[1].innerText;
+  document.frmupdate.clmNum.value = rowSelected.cells[2].innerText;
+  document.frmupdate.clmType.value = rowSelected.cells[3].innerText;
+  document.frmupdate.clmPrgm.value = rowSelected.cells[4].innerText;
+  document.frmupdate.startDt.value = rowSelected.cells[5].innerText.split("/").reverse().join("-");
+  document.frmupdate.endDt.value = rowSelected.cells[6].innerText.split("/").reverse().join("-");
+}
+
+function updateRow(tableRowIndex){
+  var table = document.getElementById('tblClaimSummary');
+  var rowSelected = table.getElementsByTagName('tr')[tableRowIndex];
+  rowSelected.cells[0].innerText = document.frmupdate.empId.value;
+  rowSelected.cells[1].innerText = document.frmupdate.empName.value;
+  rowSelected.cells[2].innerText = document.frmupdate.clmNum.value;
+  rowSelected.cells[3].innerText = document.frmupdate.clmType.value;
+  rowSelected.cells[4].innerText = document.frmupdate.clmPrgm.value;
+  rowSelected.cells[5].innerText = document.frmupdate.startDt.value.split("-").reverse().join("/");
+  rowSelected.cells[6].innerText = document.frmupdate.endDt.value.split("-").reverse().join("/");
+}
+
+function cancelClaim(){
+  formUpdate.classList.add("hide");
+}
+
+function updateClaim(){
+  var valid = true;
+  var clmNumRegex = /^([a-zA-Z0-9]{9})$/;
+  var claimNumber = document.frmupdate.clmNum.value;
+  var claimPrgm = document.frmupdate.clmPrgm.value;
+  var startDate = document.frmupdate.startDt.value;
+  if(!claimNumber.match(clmNumRegex)){
+    clmNum.classList.add("error");
+    valid = false;
+  }
+  else{
+    clmNum.classList.remove("error");
+  }
+
+  if(claimPrgm.length < 20){
+    clmPrgm.classList.add("error");
+    valid = false;
+  }
+  else{
+    clmPrgm.classList.remove("error");
+  }
+
+  if(startDate == null || startDate ==""){
+    startDt.classList.add("error");
+    valid = false;
+  }
+  else{
+    startDt.classList.remove("error");
+  }
+
+  if(valid){
+    updateRow(tableRowIndex);
+    formUpdate.classList.add("hide");
+  }
+}
+  
+</script>
+</head>
+<body>
+  <header>
+    <div>
+    <span id="header"> Claim Summary</span>
+    <div id="userDetails">
+      <span id="welcome" class="right left-align"></span> </br>
+      <span id="time" class="right left-align"></span>
+  </div>
+  </div>
+  </header>
+<div id="menu">
+  <ul>
+  <li><a href="javascript:void(0);" onclick="editRowFromLink()">Update Claim Details</a></li> 
+  <li><a href="About.html">About</a></li>
+  <li><a href="ContactUs.html">Contact Us</a></li>
+  <li><a href="Login.html" class="right">Logout</a></li>
+</ul>
+</div>
+<div id="table">
+<table id="tblClaimSummary">
+</table>
+</div>
+<div id="formUpdate" name="divUpdate" class="col-md-4 hide">
+  <form name="frmupdate">
+    <div id="divUpdate" class="form-group">
+       <label>Employee Id: </label>
+       <input type="text" name="empId" class="form-control" id="empId" readonly>
+       <label>Employee Name: </label>
+       <input type="text" name="empName" class="form-control" id="empName" readonly>
+       <label>Claim Number</label>
+       <input type="password" name="clmNum" class="form-control" id="clmNum" pattern="[a-zA-Z0-9\s]{9}" title="Enter 9 digit alphanumeric value">
+       <label>Claim Type</label>
+       <select name="clmType" id="clmType" class="form-control">
+        <option value="Submitted">Submitted</option>
+        <option value="Received">Received</option>
+        <option value="Pending">Pending</option>
+        <option value="More Info Required">More Info Required</option>
+        <option value="Denied">Denied</option>
+        <option value="Rejected">Rejected</option>
+        <option value="Paid">Paid</option>
+      </select>
+       <label>Claim Program</label>
+       <input type="text" name="clmPrgm" class="form-control" id="clmPrgm">
+       <label>Start Date</label>
+       <input type="date" name="startDt" class="form-control" id="startDt">
+       <label>End Date</label>
+       <input type="date" name="endDt" class="form-control" id="endDt"> </br>
+       <div id="buttons">
+       <input type="button" id="save" class=" btn btn-block mybtn save" value="Update" onclick="updateClaim()">
+       <input type="button" id="cancel" class=" btn btn-block mybtn cancel" value="Cancel" onclick="cancelClaim()">
+      </div>
+    </div>
+  </form>
+</div>
+<footer>
+  &copy;2020 Mani
+</footer>
+</body>
+</html>
